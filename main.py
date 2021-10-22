@@ -18,7 +18,7 @@ def get_all_cities():
     return all_cities
 
 def search_cities(string):
-    nlp = spacy.load('fr_core_news_lg')
+    nlp = spacy.load('fr_core_news_md')
     all_cities = get_all_cities()
     doc = nlp(string)
 
