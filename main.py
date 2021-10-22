@@ -18,6 +18,7 @@ def get_all_cities():
     return all_cities
 
 def search_cities(string):
+    nlp = spacy.load('fr_core_news_lg')
     all_cities = get_all_cities()
     doc = nlp(string)
 
@@ -36,7 +37,7 @@ def search_cities(string):
     return cities
 
 app = Flask(__name__)
-nlp = spacy.load('fr_core_news_lg')
+
 
 @app.route('/', methods=['GET', 'POST'])
 def welcome():
