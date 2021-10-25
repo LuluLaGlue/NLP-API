@@ -1,5 +1,7 @@
 # API
+
 ### **_AI_**
+
 -   Our AI is accessible via the heroku hosted Flask API located <a href="https://api-aia.herokuapp.com">here</a>.
     -   NLP: The NLP Part is exposed via the endpoint <code>/get_cities</code>:
         -   Method: <code>POST</code>
@@ -9,7 +11,7 @@
     -   Shortest Path: The Shortest Path algorithm is exposed via the endpoint <code>/path</code>:
         -   Method: <code>POST</code>
         -   Body: <code>{"start": "Gare de Gap", "end": "Gare de Grenoble"}</code>,
-        -   /!\\: The stations must be valid (*refer to <code>/stations</code> for a list of stations*),
+        -   /!\\: The stations must be valid (_refer to <code>/stations</code> for a list of stations_),
         -   Return: <code>{"path": ["Gare de Gap", "Gare de Grenoble"]}</code>.
     -   Stations: The list of train stations can be retrieved via <code>/stations</code>:
         -   Method: <code>GET</code>,

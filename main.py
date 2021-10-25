@@ -9,8 +9,10 @@ import os
 
 def shortest_path(start, end):
     graph = SimpleGraph()
+    path = graph.getPath(start, end)
+    path.reverse()
 
-    return graph.getPath(start, end)
+    return path
 
 
 def get_stations(search=None):
@@ -46,7 +48,9 @@ def get_all_cities():
 
 def search_cities(string):
     all_cities = get_all_cities()
-    doc = nlp(string)
+    s = ' '.join(string.split('-'))
+    print(s)
+    doc = nlp(s)
 
     cities = []
 
@@ -92,8 +96,8 @@ def welcome():
                 },
                 "return": {
                     "path": [
-                        "Arriving Station", "Connecting Station",
-                        "Starting Station"
+                        "Starting Station", "Connecting Station",
+                        "Arriving Station"
                     ]
                 }
             }
