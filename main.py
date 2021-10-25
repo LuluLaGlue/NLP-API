@@ -20,7 +20,7 @@ def get_stations(search=None):
         os.sep, os.sep),
                      sep=";")
     df.pop("id")
-    df = df.apply(lambda x: pd.Series(x.dropna().values))
+    df = df.apply(lambda x: pd.Series(x.dropna().values.lower()))
 
     if search == None:
         return df["station"].tolist()
