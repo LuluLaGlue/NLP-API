@@ -70,7 +70,53 @@ nlp = spacy.load('fr_core_news_md')
 @app.route('/', methods=['GET', 'POST'])
 def welcome():
 
-    return jsonify(values="Welcome")
+    return jsonify(routes=[{
+        "/get_cities": {
+            "POST": {
+                "description": "Extract cities from a text query",
+                "body": {
+                    "text": "Je veux aller de station1 à station2."
+                },
+                "return": {
+                    "cities": ["station1", "station2"]
+                }
+            }
+        }
+    }, {
+        "/path": {
+            "POST": {
+                "description": "Get the shortest path between two stations",
+                "body": {
+                    "start": "Starting Station",
+                    "end": "Arriving Station"
+                },
+                "return": {
+                    "path": [
+                        "Arriving Station", "Connecting Station",
+                        "Starting Station"
+                    ]
+                }
+            }
+        }
+    }, {
+        "/stations": {
+            "GET": {
+                "description": "Get All Train Stations",
+                "return": {
+                    "stations": ["station1", "station2", "station3", "..."]
+                }
+            },
+            "POST": {
+                "description": "Search Stations",
+                "body": {
+                    "query": "Station"
+                },
+                "return": {
+                    "stations": ["station1", "station2"]
+                }
+            }
+        }
+    }])
 
 
 @app.route('/stations', methods=['GET', 'POST'])
