@@ -1,9 +1,16 @@
 from flask import Flask, jsonify, request
-import geonamescache
 from geotext import GeoText
-import spacy
+from Classes.SimpleGraph import SimpleGraph
 import pandas as pd
+import geonamescache
+import spacy
 import os
+
+
+def shortest_path(start, end):
+    graph = SimpleGraph()
+
+    return graph.getPath(start, end)
 
 
 def get_stations(search=None):
@@ -38,7 +45,6 @@ def get_all_cities():
 
 
 def search_cities(string):
-    nlp = spacy.load('fr_core_news_md')
     all_cities = get_all_cities()
     doc = nlp(string)
 
@@ -58,11 +64,12 @@ def search_cities(string):
 
 
 app = Flask(__name__)
+nlp = spacy.load('fr_core_news_md')
 
 
 @app.route('/', methods=['GET', 'POST'])
 def welcome():
-    return (jsonify(values="Welcome"))
+    return jsonify(values="Welcome")
 
 
 @app.route('/stations', methods=['GET', 'POST'])
@@ -70,17 +77,38 @@ def stations():
     search = None
     if request.method == 'POST':
         search = request.json['query']
-    stations = get_stations(search)
+    try:
+        stations = get_stations(search)
+    except Exception as e:
+        print(e)
+        return jsonify(error=True, stations=None)
 
-    return jsonify(stations=stations)
+    return jsonify(error=False, stations=stations)
+
+
+@app.route('/path', methods=['POST'])
+def path():
+    start = request.json['start']
+    end = request.json['end']
+    try:
+        path = shortest_path(start, end)
+    except Exception as e:
+        print(e)
+        return jsonify(error=True, path=None)
+
+    return jsonify(error=False, path=path)
 
 
 @app.route('/get_cities', methods=['POST'])
 def get_cities():
     string = request.json['text']
-    cities = search_cities(string)
+    try:
+        cities = search_cities(string)
+    except Exception as e:
+        print(e)
+        return jsonify(error=True, cities=None)
 
-    return jsonify(cities=cities)
+    return jsonify(error=False, cities=cities)
 
 
 if __name__ == '__main__':
