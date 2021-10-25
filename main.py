@@ -69,6 +69,7 @@ nlp = spacy.load('fr_core_news_md')
 
 @app.route('/', methods=['GET', 'POST'])
 def welcome():
+
     return jsonify(values="Welcome")
 
 
@@ -79,8 +80,8 @@ def stations():
         search = request.json['query']
     try:
         stations = get_stations(search)
-    except Exception as e:
-        print(e)
+    except:
+
         return jsonify(error=True, stations=None)
 
     return jsonify(error=False, stations=stations)
@@ -92,8 +93,8 @@ def path():
     end = request.json['end']
     try:
         path = shortest_path(start, end)
-    except Exception as e:
-        print(e)
+    except:
+
         return jsonify(error=True, path=None)
 
     return jsonify(error=False, path=path)
@@ -104,8 +105,8 @@ def get_cities():
     string = request.json['text']
     try:
         cities = search_cities(string)
-    except Exception as e:
-        print(e)
+    except:
+
         return jsonify(error=True, cities=None)
 
     return jsonify(error=False, cities=cities)
