@@ -9,10 +9,10 @@ import os
 class SimpleGraph:
     def __init__(self):
         self.edges: Dict[Location, Dict[string, float]] = {}
-        timetables = pd.read_csv('data{}timetables.csv'.format(
-            os.sep, os.sep, os.sep),
+        timetables = pd.read_csv('data{}timetables.csv'.format(os.sep),
                                  sep='\t',
                                  encoding='ISO-8859-1')
+        timetables["trajet"] = timetables["trajet"].str.lower()
         for index, row in timetables.iterrows():
             stopName = row['trajet'].split(' - ')
             time = row['duree']
@@ -58,10 +58,11 @@ class SimpleGraph:
             visited.append(current)
 
     def getPath(self, start, end):
+        start = start.lower()
+        end = end.lower()
         self.initVertex(start)
         self.updateVertex(start)
         q = Queue()
-        res = Queue()
         q.put(end)
         current = end
         result = []
