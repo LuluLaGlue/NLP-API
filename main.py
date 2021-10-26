@@ -11,8 +11,11 @@ import os
 def shortest_path(start, end):
     graph = SimpleGraph()
     path = graph.getPath(start, end)
+
     if not path:
+
         return "No path found"
+
     path.reverse()
 
     return path
@@ -25,12 +28,10 @@ def get_stations(search=None):
                      encoding='UTF-8')
     df.pop("id")
     df = df.apply(lambda x: pd.Series(x.dropna().values))
-
-    if search == None:
-        return df["station"].tolist()
-
     df["station"] = df["station"].str.lower()
-    df = df[df["station"].str.contains(search.lower())]
+
+    if search != None:
+        df = df[df["station"].str.contains(search.lower())]
 
     return df["station"].tolist()
 
@@ -42,6 +43,7 @@ def get_all_cities():
 
     for city in list_cities:
         all_cities.append(list_cities[city]['name'].lower())
+
         for alternate in list_cities[city]['alternatenames']:
             dash = alternate.split('-')
             dash = ' '.join(dash).lower()
@@ -50,9 +52,9 @@ def get_all_cities():
     return all_cities
 
 
-def search_cities(string):
+def search_cities(quote):
     all_cities = get_all_cities()
-    s = ' '.join(string.split('-'))
+    s = ' '.join(quote.split('-'))
     doc = nlp(s)
 
     cities = []
@@ -60,11 +62,12 @@ def search_cities(string):
     for ent in doc.ents:
         location = ent.text.split('-')
         location = "-".join(location).lower()
-        print(location)
+
         if location in all_cities:
             cities.append(location)
         else:
             gt = GeoText(location)
+
             if len(gt.cities) > 0:
                 cities.append(location)
             elif len(cities) < 2:
@@ -73,7 +76,8 @@ def search_cities(string):
                     .format(location)).json()
                 df = pd.DataFrame(r['results'])
                 df["name"] = df["name"].str.lower()
-                df = df[df["name"].str.contains(location.lower())]
+                df = df[df["name"].str.contains(location)]
+
                 if len(df['name']) > 0:
                     cities.append(location)
 
@@ -138,12 +142,14 @@ def welcome():
 
 @app.route('/stations', methods=['GET', 'POST'])
 def stations():
-    search = None
-    if request.method == 'POST':
-        search = request.json['query']
-    stations = get_stations(search)
+    query = None
 
-    return jsonify(error=False, stations=stations)
+    if request.method == 'POST':
+        query = request.json['query']
+
+    stations = get_stations(query)
+
+    return jsonify(stations=stations)
 
 
 @app.route('/path', methods=['POST'])
@@ -152,15 +158,15 @@ def path():
     end = request.json['end']
     path = shortest_path(start, end)
 
-    return jsonify(error=False, path=path)
+    return jsonify(path=path)
 
 
 @app.route('/get_cities', methods=['POST'])
 def get_cities():
-    string = request.json['text']
-    cities = search_cities(string)
+    text = request.json['text']
+    cities = search_cities(text)
 
-    return jsonify(error=False, cities=cities)
+    return jsonify(cities=cities)
 
 
 if __name__ == '__main__':
