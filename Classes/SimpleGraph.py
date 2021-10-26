@@ -13,9 +13,11 @@ class SimpleGraph:
                                  sep='\t',
                                  encoding='ISO-8859-1')
         timetables["trajet"] = timetables["trajet"].str.lower()
+
         for index, row in timetables.iterrows():
             stopName = row['trajet'].split(' - ')
             time = row['duree']
+
             if stopName[0] in self.edges:
                 self.edges[stopName[0]].update({stopName[1]: time})
             else:
@@ -32,13 +34,16 @@ class SimpleGraph:
                        ensure_ascii=True))
 
     def neighbors(self, id) -> List:
+
         return self.edges[id]
 
     def initVertex(self, start):
         inf = float('inf')
         self.vertex: Dict[string, Dict[float, string]] = {}
+
         for row in self.edges:
             self.vertex[row] = {'min': inf, 'from': ''}
+
         self.vertex[start]['min'] = 0
 
     def updateVertex(self, start):
@@ -48,31 +53,42 @@ class SimpleGraph:
 
         while not unvisited.empty():
             current = unvisited.get()[1]
+
             for n in self.neighbors(current):
                 actualCost = self.vertex[n]['min']
                 newCost = self.vertex[current]['min'] + self.edges[current][n]
+
                 if newCost < actualCost:
                     self.vertex[n]['min'] = min(actualCost, newCost)
                     self.vertex[n]['from'] = current
+
                 unvisited.put((self.vertex[n]['min'], n))
+
             visited.append(current)
 
     def getPath(self, start, end):
         start = start.lower()
         end = end.lower()
+
         self.initVertex(start)
         self.updateVertex(start)
         q = Queue()
         q.put(end)
+
         current = end
         result = []
+
         try:
+
             while current != start:
                 current = self.vertex[current]['from']
                 q.put(current)
+
             while not q.empty():
                 t = q.get()
                 result.append(t)
+
             return result
         except KeyError:
+
             return False

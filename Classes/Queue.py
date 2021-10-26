@@ -6,10 +6,12 @@ class Queue:
         self.elements = collections.deque()
 
     def empty(self) -> bool:
+
         return not self.elements
 
     def put(self, x):
         self.elements.append(x)
 
     def get(self):
+
         return self.elements.popleft()
