@@ -4,6 +4,7 @@ from Classes.SimpleGraph import SimpleGraph
 import pandas as pd
 import geonamescache
 import spacy
+import requests
 import os
 
 
@@ -18,9 +19,10 @@ def shortest_path(start, end):
 def get_stations(search=None):
     df = pd.read_csv(".{}data{}list_train_stations_brut.csv".format(
         os.sep, os.sep),
-                     sep=";")
+                     sep=";",
+                     encoding='UTF-8')
     df.pop("id")
-    df = df.apply(lambda x: pd.Series(x.dropna().values.lower()))
+    df = df.apply(lambda x: pd.Series(x.dropna().values))
 
     if search == None:
         return df["station"].tolist()
@@ -49,20 +51,29 @@ def get_all_cities():
 def search_cities(string):
     all_cities = get_all_cities()
     s = ' '.join(string.split('-'))
-    print(s)
     doc = nlp(s)
 
     cities = []
 
     for ent in doc.ents:
         location = ent.text.split('-')
-        location = " ".join(location).lower()
+        location = "-".join(location).lower()
+        print(location)
         if location in all_cities:
             cities.append(location)
         else:
             gt = GeoText(location)
             if len(gt.cities) > 0:
                 cities.append(location)
+            elif len(cities) < 2:
+                r = requests.get(
+                    "https://geocoding-api.open-meteo.com/v1/search?name={}&language=fr"
+                    .format(location)).json()
+                df = pd.DataFrame(r['results'])
+                df["name"] = df["name"].str.lower()
+                df = df[df["name"].str.contains(location.lower())]
+                if len(df['name']) > 0:
+                    cities.append(location)
 
     return cities
 
@@ -128,11 +139,7 @@ def stations():
     search = None
     if request.method == 'POST':
         search = request.json['query']
-    try:
-        stations = get_stations(search)
-    except:
-
-        return jsonify(error=True, stations=None)
+    stations = get_stations(search)
 
     return jsonify(error=False, stations=stations)
 
@@ -153,11 +160,7 @@ def path():
 @app.route('/get_cities', methods=['POST'])
 def get_cities():
     string = request.json['text']
-    try:
-        cities = search_cities(string)
-    except:
-
-        return jsonify(error=True, cities=None)
+    cities = search_cities(string)
 
     return jsonify(error=False, cities=cities)
 
