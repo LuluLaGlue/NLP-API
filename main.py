@@ -1,16 +1,18 @@
+from Classes.SimpleGraph import SimpleGraph
 from flask import Flask, jsonify, request
 from geotext import GeoText
-from Classes.SimpleGraph import SimpleGraph
-import pandas as pd
 import geonamescache
-import spacy
+import pandas as pd
 import requests
+import spacy
 import os
 
 
 def shortest_path(start, end):
     graph = SimpleGraph()
     path = graph.getPath(start, end)
+    if not path:
+        return "No path found"
     path.reverse()
 
     return path
@@ -148,11 +150,7 @@ def stations():
 def path():
     start = request.json['start']
     end = request.json['end']
-    try:
-        path = shortest_path(start, end)
-    except:
-
-        return jsonify(error=True, path=None)
+    path = shortest_path(start, end)
 
     return jsonify(error=False, path=path)
 
