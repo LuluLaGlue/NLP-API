@@ -9,7 +9,7 @@ import os
 class SimpleGraph:
     def __init__(self):
         self.edges: Dict[Location, Dict[string, float]] = {}
-        timetables = pd.read_csv('..{}data{}timetables.csv'.format(
+        timetables = pd.read_csv('data{}timetables.csv'.format(
             os.sep, os.sep, os.sep),
                                  sep='\t',
                                  encoding='ISO-8859-1')
