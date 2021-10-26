@@ -9,22 +9,25 @@ import os
 class SimpleGraph:
     def __init__(self):
         self.edges: Dict[Location, Dict[string, float]] = {}
-        timetables = pd.read_csv('data{}timetables.csv'.format(os.sep),
-                                 sep='\t',
-                                 encoding='UTF-8')
-        timetables["trajet"] = timetables["trajet"].str.lower()
+        df = pd.read_csv('data{}timetables.csv'.format(os.sep),
+                         sep='\t',
+                         encoding='UTF-8')
+        df["trajet"] = df["trajet"].str.lower()
+        # Remove accents
+        df["trajet"] = df["trajet"].str.normalize('NFKD').str.encode(
+            'ascii', errors='ignore').str.decode('utf-8')
 
-        for index, row in timetables.iterrows():
-            stopName = row['trajet'].split(' - ')
+        for index, row in df.iterrows():
+            train_station = row['trajet'].split(' - ')
             time = row['duree']
 
-            if stopName[0] in self.edges:
-                self.edges[stopName[0]].update({stopName[1]: time})
+            if train_station[0] in self.edges:
+                self.edges[train_station[0]].update({train_station[1]: time})
             else:
-                self.edges[stopName[0]] = {stopName[1]: time}
+                self.edges[train_station[0]] = {train_station[1]: time}
 
-            if not stopName[1] in self.edges:
-                self.edges[stopName[1]] = {}
+            if not train_station[1] in self.edges:
+                self.edges[train_station[1]] = {}
 
     def print(self):
         print(
@@ -54,15 +57,16 @@ class SimpleGraph:
         while not unvisited.empty():
             current = unvisited.get()[1]
 
-            for n in self.neighbors(current):
-                actualCost = self.vertex[n]['min']
-                newCost = self.vertex[current]['min'] + self.edges[current][n]
+            for neighbor in self.neighbors(current):
+                current_cost = self.vertex[neighbor]['min']
+                new_cost = self.vertex[current]['min'] + self.edges[current][
+                    neighbor]
 
-                if newCost < actualCost:
-                    self.vertex[n]['min'] = min(actualCost, newCost)
-                    self.vertex[n]['from'] = current
+                if new_cost < current_cost:
+                    self.vertex[neighbor]['min'] = min(current_cost, new_cost)
+                    self.vertex[neighbor]['from'] = current
 
-                unvisited.put((self.vertex[n]['min'], n))
+                unvisited.put((self.vertex[neighbor]['min'], neighbor))
 
             visited.append(current)
 
@@ -75,7 +79,7 @@ class SimpleGraph:
             self.updateVertex(start)
         except KeyError:
 
-            return 1
+            return "Invalid Start Station"
 
         try:
             q = Queue()
@@ -92,7 +96,8 @@ class SimpleGraph:
                 t = q.get()
                 result.append(t)
 
+            result.reverse()
             return result
         except KeyError:
 
-            return 2
+            return "No path found"

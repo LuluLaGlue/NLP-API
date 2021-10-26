@@ -3,6 +3,7 @@ from flask import Flask, jsonify, request
 from geotext import GeoText
 import geonamescache
 import pandas as pd
+import unidecode
 import requests
 import spacy
 import os
@@ -10,16 +11,9 @@ import os
 
 def shortest_path(start, end):
     graph = SimpleGraph()
+    start = unidecode.unidecode(start)
+    end = unidecode.unidecode(end)
     path = graph.getPath(start, end)
-
-    if path == 2:
-
-        return "No path found"
-    elif path == 1:
-
-        return "Invalid Start Station"
-
-    path.reverse()
 
     return path
 
