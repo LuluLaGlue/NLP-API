@@ -11,7 +11,7 @@ class SimpleGraph:
         self.edges: Dict[Location, Dict[string, float]] = {}
         timetables = pd.read_csv('data{}timetables.csv'.format(os.sep),
                                  sep='\t',
-                                 encoding='ISO-8859-1')
+                                 encoding='UTF-8')
         timetables["trajet"] = timetables["trajet"].str.lower()
 
         for index, row in timetables.iterrows():
@@ -70,15 +70,19 @@ class SimpleGraph:
         start = start.lower()
         end = end.lower()
 
-        self.initVertex(start)
-        self.updateVertex(start)
-        q = Queue()
-        q.put(end)
+        try:
+            self.initVertex(start)
+            self.updateVertex(start)
+        except KeyError:
 
-        current = end
-        result = []
+            return 1
 
         try:
+            q = Queue()
+            q.put(end)
+
+            current = end
+            result = []
 
             while current != start:
                 current = self.vertex[current]['from']
@@ -91,4 +95,4 @@ class SimpleGraph:
             return result
         except KeyError:
 
-            return False
+            return 2

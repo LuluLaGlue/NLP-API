@@ -12,9 +12,12 @@ def shortest_path(start, end):
     graph = SimpleGraph()
     path = graph.getPath(start, end)
 
-    if not path:
+    if path == 2:
 
         return "No path found"
+    elif path == 1:
+
+        return "Invalid Start Station"
 
     path.reverse()
 
