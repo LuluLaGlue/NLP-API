@@ -12,22 +12,24 @@ class SimpleGraph:
         df = pd.read_csv('data{}timetables.csv'.format(os.sep),
                          sep='\t',
                          encoding='UTF-8')
+
         df["trajet"] = df["trajet"].str.lower()
         # Remove accents
         df["trajet"] = df["trajet"].str.normalize('NFKD').str.encode(
             'ascii', errors='ignore').str.decode('utf-8')
 
-        for index, row in df.iterrows():
-            train_station = row['trajet'].split(' - ')
+        for i, row in df.iterrows():
+            train_start = row['trajet'].split(' - ')[0]
+            train_end = row['trajet'].split(' - ')[1]
             time = row['duree']
 
-            if train_station[0] in self.edges:
-                self.edges[train_station[0]].update({train_station[1]: time})
+            if train_start in self.edges:
+                self.edges[train_start].update({train_end: time})
             else:
-                self.edges[train_station[0]] = {train_station[1]: time}
+                self.edges[train_start] = {train_end: time}
 
-            if not train_station[1] in self.edges:
-                self.edges[train_station[1]] = {}
+            if not train_end in self.edges:
+                self.edges[train_end] = {}
 
     def print(self):
         print(
@@ -98,6 +100,7 @@ class SimpleGraph:
 
             result.reverse()
             return result
+
         except KeyError:
 
             return "No path found"
