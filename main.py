@@ -43,6 +43,16 @@ def get_all_cities():
     return all_cities
 
 
+def is_departure(word):
+    w = unidecode.unidecode(word).lower()
+    return w == "de" or w == "depuis"
+
+
+def is_destination(word):
+    w = unidecode.unidecode(word).lower()
+    return w == "a" or w == "vers"
+
+
 def search_cities(quote):
     all_cities = get_all_cities()
     s = ' '.join(quote.split('-'))
@@ -51,26 +61,31 @@ def search_cities(quote):
     cities = []
 
     for ent in doc.ents:
-        location = ent.text.split('-')
+        w = unidecode.unidecode(ent.text)
+        location = w.split('-')
         location = "-".join(location).lower()
 
-        if location in all_cities:
-            cities.append(location)
-        else:
+        r = requests.get(
+            "https://geocoding-api.open-meteo.com/v1/search?name={}&language=fr"
+            .format(location)).json()
+        try:
+            result = r['results']
+            df = pd.DataFrame(result)
+            df["name"] = df["name"].str.lower()
+            df["name"] = df["name"].str.normalize('NFKD').str.encode(
+                'ascii', errors='ignore').str.decode('utf-8')
+            df = df[df["name"].str.contains(location)]
+
+            if len(df['name']) > 0:
+                cities.append(df.at[0, "name"])
+        except KeyError:
             gt = GeoText(location)
 
             if len(gt.cities) > 0:
                 cities.append(location)
-            elif len(cities) < 2:
-                r = requests.get(
-                    "https://geocoding-api.open-meteo.com/v1/search?name={}&language=fr"
-                    .format(location)).json()
-                df = pd.DataFrame(r['results'])
-                df["name"] = df["name"].str.lower()
-                df = df[df["name"].str.contains(location)]
 
-                if len(df['name']) > 0:
-                    cities.append(location)
+            elif location in all_cities:
+                cities.append(location)
 
     return cities
 
