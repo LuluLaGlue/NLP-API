@@ -222,5 +222,28 @@ def get_cities():
     return jsonify(cities=cities)
 
 
+@app.route('/query_to_path', methods=['POST'])
+def query_to_path():
+    query = request.json['query']
+    cities = search_cities(query)
+
+    if len(cities) < 2:
+
+        return jsonify(cities=cities,
+                       error="Invalid query",
+                       info="Less then 2 cities found")
+
+    start = cities[0]
+    end = cities[1]
+
+    p, e, i = multi_shortest_path(start, end)
+
+    if len(p) == 0:
+
+        return jsonify(path=p, error=e, info=i)
+
+    return jsonify(path=p)
+
+
 if __name__ == '__main__':
     app.run()
