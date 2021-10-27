@@ -13,9 +13,9 @@ def shortest_path(start, end):
     graph = SimpleGraph()
     start = unidecode.unidecode(start)
     end = unidecode.unidecode(end)
-    path = graph.getPath(start, end)
+    path, error, info = graph.getPath(start, end)
 
-    return path
+    return path, error, info
 
 
 def get_stations(search=None):
@@ -146,6 +146,12 @@ def stations():
 
     stations = get_stations(query)
 
+    if len(stations) == 0:
+
+        return jsonify(stations=stations,
+                       error="Invalid query",
+                       info="No stations found")
+
     return jsonify(stations=stations)
 
 
@@ -153,15 +159,25 @@ def stations():
 def path():
     start = request.json['start']
     end = request.json['end']
-    path = shortest_path(start, end)
+    p, e, i = shortest_path(start, end)
 
-    return jsonify(path=path)
+    if e or i:
+
+        return jsonify(path=p, error=e, info=i)
+
+    return jsonify(path=p)
 
 
 @app.route('/get_cities', methods=['POST'])
 def get_cities():
     text = request.json['text']
     cities = search_cities(text)
+
+    if len(cities) < 2:
+
+        return jsonify(cities=cities,
+                       error="Invalid query",
+                       info="Less than 2 cities found")
 
     return jsonify(cities=cities)
 

@@ -75,13 +75,19 @@ class SimpleGraph:
     def getPath(self, start, end):
         start = start.lower()
         end = end.lower()
+        try:
+            self.initVertex(end)
+            self.updateVertex(end)
+        except KeyError:
+
+            return None, "Invalid Query", "Invalid End Station"
 
         try:
             self.initVertex(start)
             self.updateVertex(start)
         except KeyError:
 
-            return "Invalid Start Station"
+            return None, "Invalid Query", "Invalid Start Station"
 
         try:
             q = Queue()
@@ -99,8 +105,8 @@ class SimpleGraph:
                 result.append(t)
 
             result.reverse()
-            return result
+            return result, None, None
 
         except KeyError:
 
-            return "No path found"
+            return None, "Not Found", "No path found"
