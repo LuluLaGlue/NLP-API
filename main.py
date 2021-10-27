@@ -26,9 +26,12 @@ def get_stations(search=None):
     df.pop("id")
     df = df.apply(lambda x: pd.Series(x.dropna().values))
     df["station"] = df["station"].str.lower()
+    df["station"] = df["station"].str.normalize('NFKD').str.encode(
+        'ascii', errors='ignore').str.decode('utf-8')
 
     if search != None:
-        df = df[df["station"].str.contains(search.lower())]
+        df = df[df["station"].str.contains(unidecode.unidecode(
+            search.lower()))]
 
     return df["station"].tolist()
 

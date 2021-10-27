@@ -14,7 +14,6 @@ class SimpleGraph:
                          encoding='UTF-8')
 
         df["trajet"] = df["trajet"].str.lower()
-        # Remove accents
         df["trajet"] = df["trajet"].str.normalize('NFKD').str.encode(
             'ascii', errors='ignore').str.decode('utf-8')
 
