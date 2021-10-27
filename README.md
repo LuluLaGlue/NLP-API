@@ -20,6 +20,14 @@
         -   Method: <code>POST</code>,
         -   Body: <code>{"query": "Paris"}</code>
         -   Return: <code>{"stations": ["Gare de Paris Montparnasse", "Gare de Paris-St-Lazare", "Gare de paris-montp.3-vaug.", "Gare de paris-bercy", "Gare de paris-est", "Gare de paris gare du nord", "Gare de paris-gare-de-lyon", "Gare de paris-austerlitz"]}</code>
+    -   Multi Path: You can search for stations and get the shortest path between them by using the <code>/multi_path</code> endpoint:
+        -   Method: <code>POST</code>,
+        -   Body: <code>{"start": "Grenoble", "end": "Lyon"}</code>
+        -   Return: <code>{"path": [{"path": ["Gare de Grenoble", "Gare de Lyob-Part-Dieu"], "time": 82, "start": "gare de grenoble", "end": "gare de lyon-part-dieu}, {"path": ["grenoble-gare-routiere", "lyon-part-dieu-gare-rou"], "time": 119, "end": "lyon-part-dieu-gare-rou", "start": "grenoble-gare-routiere"}]}</code>
+    -   Query To Path: Based on a French Text Query return all possible train routes by using <code>/query_to_path</code>:
+        -   Method: <code>POST</code>,
+        -   Body: <code>{"query": "Je veux aller de Grenoble a Lyon"}</code>,
+        -   Return: <code>{"path": [{"path": ["Gare de Grenoble", "Gare de Lyob-Part-Dieu"], "time": 82, "start": "gare de grenoble", "end": "gare de lyon-part-dieu}, {"path": ["grenoble-gare-routiere", "lyon-part-dieu-gare-rou"], "time": 119, "end": "lyon-part-dieu-gare-rou", "start": "grenoble-gare-routiere"}]}</code>
 -   You can run the API locally (if you have <code>python 3.9</code> installed) by running:
     -   <code>cd api/</code>,
     -   <code>pip3 install -r requirements.txt</code>,

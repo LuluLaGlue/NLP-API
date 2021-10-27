@@ -21,8 +21,8 @@ def get_stations(search=None):
         'ascii', errors='ignore').str.decode('utf-8')
 
     if search != None:
-        df = df[df["station"].str.contains(unidecode.unidecode(
-            search.lower()))]
+        s = unidecode.unidecode(search.lower())
+        df = df[df["station"].str.contains(s)]
 
     return df["station"].tolist()
 
@@ -77,43 +77,40 @@ def search_cities(quote):
 
 def shortest_path(start, end):
     graph = SimpleGraph()
-    start = unidecode.unidecode(start)
-    end = unidecode.unidecode(end)
-    path, time, error, info = graph.getPath(start, end)
+    s = unidecode.unidecode(start)
+    e = unidecode.unidecode(end)
+    p, t, err, i = graph.getPath(s, e)
 
-    return path, time, error, info
+    return p, t, err, i
 
 
 def multi_shortest_path(start, end):
-    start = unidecode.unidecode(start).lower()
-    end = unidecode.unidecode(end).lower()
     all_start = get_stations(start)
     all_end = get_stations(end)
 
-    paths = []
-    errs = []
-    infos = []
+    all_path = []
+    all_err = []
+    all_info = []
 
     for s in all_start:
 
         for e in all_end:
-            graph = SimpleGraph()
-            path, time, err, info = graph.getPath(s, e)
+            path, time, err, info = shortest_path(s, e)
 
             if not err and not info:
-                paths.append({
+                all_path.append({
                     'path': path,
                     'time': time,
                     'start': s,
                     'end': e
                 })
             else:
-                errs.append({'error': err, 'start': s, 'end': e})
-                infos.append({'info': info, 'start': s, 'end': e})
+                all_err.append({'error': err, 'start': s, 'end': e})
+                all_info.append({'info': info, 'start': s, 'end': e})
 
-    paths = sorted(paths, key=lambda k: k['time'])
+    all_path = sorted(all_path, key=lambda k: k['time'])
 
-    return paths, errs, infos
+    return all_path, all_err, all_info
 
 
 app = Flask(__name__)
@@ -148,6 +145,55 @@ def welcome():
                         "Starting Station", "Connecting Station",
                         "Arriving Station"
                     ]
+                }
+            }
+        }
+    }, {
+        "/multi_path": {
+            "POST": {
+                "description":
+                "Searches Stations and returns a list of shortest path between all of them.",
+                "body": {
+                    "start": "Starting Station",
+                    "end": "Arriving Station"
+                },
+                "return": {
+                    "path": [{
+                        "path": [
+                            "Starting Station", "Connecting Station",
+                            "Arriving Station"
+                        ],
+                        "time":
+                        "Time required for this route",
+                        "start":
+                        "Starting Station",
+                        "end":
+                        "Arriving Station"
+                    }]
+                }
+            }
+        }
+    }, {
+        "/query_to_path": {
+            "POST": {
+                "description":
+                "Takes a french text query and returns possible train routes between cities listed.",
+                "body": {
+                    "query": "Je veux aller de station1 a station2"
+                },
+                "return": {
+                    "path": [{
+                        "path": [
+                            "Starting Station", "Connecting Station",
+                            "Arriving Station"
+                        ],
+                        "time":
+                        "Time required for this route",
+                        "start":
+                        "Starting Station",
+                        "end":
+                        "Arriving Station"
+                    }]
                 }
             }
         }
@@ -190,6 +236,20 @@ def stations():
     return jsonify(stations=stations)
 
 
+@app.route('/get_cities', methods=['POST'])
+def get_cities():
+    text = request.json['text']
+    cities = search_cities(text)
+
+    if len(cities) < 2:
+
+        return jsonify(cities=cities,
+                       error="Invalid query",
+                       info="Less than 2 cities found")
+
+    return jsonify(cities=cities)
+
+
 @app.route('/path', methods=['POST'])
 def path():
     start = request.json['start']
@@ -215,20 +275,6 @@ def multi_path():
         return jsonify(path=p, error=e, info=i)
 
     return jsonify(path=p)
-
-
-@app.route('/get_cities', methods=['POST'])
-def get_cities():
-    text = request.json['text']
-    cities = search_cities(text)
-
-    if len(cities) < 2:
-
-        return jsonify(cities=cities,
-                       error="Invalid query",
-                       info="Less than 2 cities found")
-
-    return jsonify(cities=cities)
 
 
 @app.route('/query_to_path', methods=['POST'])
