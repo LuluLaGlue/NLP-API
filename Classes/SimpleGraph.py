@@ -79,14 +79,14 @@ class SimpleGraph:
             self.updateVertex(end)
         except KeyError:
 
-            return None, "Invalid Query", "Invalid End Station"
+            return None, None, "Invalid Query", "Invalid End Station"
 
         try:
             self.initVertex(start)
             self.updateVertex(start)
         except KeyError:
 
-            return None, "Invalid Query", "Invalid Start Station"
+            return None, None, "Invalid Query", "Invalid Start Station"
 
         try:
             q = Queue()
@@ -94,6 +94,8 @@ class SimpleGraph:
 
             current = end
             result = []
+
+            total_time = self.vertex[current]['min']
 
             while current != start:
                 current = self.vertex[current]['from']
@@ -104,8 +106,9 @@ class SimpleGraph:
                 result.append(t)
 
             result.reverse()
-            return result, None, None
+
+            return result, total_time, None, None
 
         except KeyError:
 
-            return None, "Not Found", "No path found"
+            return None, None, "Not Found", "No path found"

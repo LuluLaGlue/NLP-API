@@ -79,9 +79,9 @@ def shortest_path(start, end):
     graph = SimpleGraph()
     start = unidecode.unidecode(start)
     end = unidecode.unidecode(end)
-    path, error, info = graph.getPath(start, end)
+    path, time, error, info = graph.getPath(start, end)
 
-    return path, error, info
+    return path, time, error, info
 
 
 def multi_shortest_path(start, end):
@@ -95,14 +95,23 @@ def multi_shortest_path(start, end):
     infos = []
 
     for s in all_start:
+
         for e in all_end:
             graph = SimpleGraph()
-            path, err, info = graph.getPath(s, e)
+            path, time, err, info = graph.getPath(s, e)
+
             if not err and not info:
-                paths.append({'path': path, 'start': s, 'end': e})
+                paths.append({
+                    'path': path,
+                    'time': time,
+                    'start': s,
+                    'end': e
+                })
             else:
                 errs.append({'error': err, 'start': s, 'end': e})
                 infos.append({'info': info, 'start': s, 'end': e})
+
+    paths = sorted(paths, key=lambda k: k['time'])
 
     return paths, errs, infos
 
@@ -185,13 +194,13 @@ def stations():
 def path():
     start = request.json['start']
     end = request.json['end']
-    p, e, i = shortest_path(start, end)
+    p, t, e, i = shortest_path(start, end)
 
-    if len(e) > 0 or len(i) > 0:
+    if e or i:
 
-        return jsonify(path=p, error=e, info=i)
+        return jsonify(path=p, time=t, error=e, info=i)
 
-    return jsonify(path=p)
+    return jsonify(path=p, time=t)
 
 
 @app.route('/multi_path', methods=['POST'])
