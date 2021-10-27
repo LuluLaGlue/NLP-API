@@ -9,15 +9,6 @@ import spacy
 import os
 
 
-def shortest_path(start, end):
-    graph = SimpleGraph()
-    start = unidecode.unidecode(start)
-    end = unidecode.unidecode(end)
-    path, error, info = graph.getPath(start, end)
-
-    return path, error, info
-
-
 def get_stations(search=None):
     df = pd.read_csv(".{}data{}list_train_stations_brut.csv".format(
         os.sep, os.sep),
@@ -82,6 +73,38 @@ def search_cities(quote):
                     cities.append(location)
 
     return cities
+
+
+def shortest_path(start, end):
+    graph = SimpleGraph()
+    start = unidecode.unidecode(start)
+    end = unidecode.unidecode(end)
+    path, error, info = graph.getPath(start, end)
+
+    return path, error, info
+
+
+def multi_shortest_path(start, end):
+    start = unidecode.unidecode(start).lower()
+    end = unidecode.unidecode(end).lower()
+    all_start = get_stations(start)
+    all_end = get_stations(end)
+
+    paths = []
+    errs = []
+    infos = []
+
+    for s in all_start:
+        for e in all_end:
+            graph = SimpleGraph()
+            path, err, info = graph.getPath(s, e)
+            if not err and not info:
+                paths.append({'path': path, 'start': s, 'end': e})
+            else:
+                errs.append({'error': err, 'start': s, 'end': e})
+                infos.append({'info': info, 'start': s, 'end': e})
+
+    return paths, errs, infos
 
 
 app = Flask(__name__)
@@ -164,7 +187,21 @@ def path():
     end = request.json['end']
     p, e, i = shortest_path(start, end)
 
-    if e or i:
+    if len(e) > 0 or len(i) > 0:
+
+        return jsonify(path=p, error=e, info=i)
+
+    return jsonify(path=p)
+
+
+@app.route('/multi_path', methods=['POST'])
+def multi_path():
+    start = request.json['start']
+    end = request.json['end']
+
+    p, e, i = multi_shortest_path(start, end)
+
+    if len(p) == 0:
 
         return jsonify(path=p, error=e, info=i)
 
