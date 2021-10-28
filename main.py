@@ -55,15 +55,14 @@ def is_destination(word):
 
 def search_cities(quote):
     all_cities = get_all_cities()
-    s = ' '.join(quote.split('-'))
-    doc = nlp(s)
+    q = unidecode.unidecode(quote).lower().split(' ')
+    doc = nlp(quote)
 
+    ids = []
     cities = []
 
     for ent in doc.ents:
-        w = unidecode.unidecode(ent.text)
-        location = w.split('-')
-        location = "-".join(location).lower()
+        location = unidecode.unidecode(ent.text).lower()
 
         r = requests.get(
             "https://geocoding-api.open-meteo.com/v1/search?name={}&language=fr"
@@ -77,15 +76,47 @@ def search_cities(quote):
             df = df[df["name"].str.contains(location)]
 
             if len(df['name']) > 0:
+                ids.append(q.index(location))
                 cities.append(df.at[0, "name"])
         except KeyError:
             gt = GeoText(location)
 
             if len(gt.cities) > 0:
+                ids.append(q.index(location))
                 cities.append(location)
 
             elif location in all_cities:
+                ids.append(q.index(location))
                 cities.append(location)
+
+    if len(ids) != 2:
+
+        return cities
+
+    if is_departure(q[ids[0] - 1]):
+
+        if is_departure(q[ids[1] - 1]):
+
+            return cities
+        else:
+
+            return cities
+    elif is_destination(q[ids[0] - 1]):
+
+        if is_destination(q[ids[1] - 1]):
+
+            return cities
+        else:
+            cities.reverse()
+
+            return cities
+    elif is_departure(q[ids[1] - 1]):
+        cities.reverse()
+
+        return cities
+    elif is_destination(q[ids[1] - 1]):
+
+        return cities
 
     return cities
 
