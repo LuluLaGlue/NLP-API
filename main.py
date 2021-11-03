@@ -45,12 +45,14 @@ def get_all_cities():
 
 def is_departure(word):
     w = unidecode.unidecode(word).lower()
+
     return w == "de" or w == "depuis"
 
 
 def is_destination(word):
     w = unidecode.unidecode(word).lower()
-    return w == "a" or w == "vers"
+
+    return w == "a" or w == "vers" or w == "pour"
 
 
 def search_cities(quote):
