@@ -7,6 +7,7 @@ import os
 
 
 class SimpleGraph:
+
     def __init__(self):
         self.edges: Dict[Location, Dict[string, float]] = {}
         df = pd.read_csv('data{}timetables.csv'.format(os.sep),
@@ -74,6 +75,9 @@ class SimpleGraph:
     def getPath(self, start, end):
         start = start.lower()
         end = end.lower()
+        if start == end:
+
+            return None, None, "Invalid Query", "Start and end are the same"
         try:
             self.initVertex(end)
             self.updateVertex(end)
