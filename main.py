@@ -6,6 +6,7 @@ import pandas as pd
 import unidecode
 import requests
 import spacy
+import time
 import os
 
 
@@ -300,6 +301,7 @@ def get_cities():
 
 @app.route('/path', methods=['POST'])
 def path():
+    start_time = time.time()
     start = request.json['start']
     end = request.json['end']
     p, t, e, i = shortest_path(start, end)
@@ -308,7 +310,7 @@ def path():
 
         return jsonify(path=p, time=t, error=e, info=i)
 
-    return jsonify(path=p, time=t)
+    return jsonify(path=p, time=t, execTime=(time.time() - start_time)))
 
 
 @app.route('/multi_path', methods=['POST'])
