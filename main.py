@@ -310,7 +310,7 @@ def path():
 
         return jsonify(path=p, time=t, error=e, info=i)
 
-    return jsonify(path=p, time=t, execTime=(time.time() - start_time)))
+    return jsonify(path=p, time=t, execTime=(time.time() - start_time))
 
 
 @app.route('/multi_path', methods=['POST'])
