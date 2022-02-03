@@ -7,17 +7,17 @@ id;station
 5;Gare de Brioude
 6;Mauriac
 7;Gare de Lure
-8;Lyon-Saint-Paul-la-Feuilée
+8;Lyon-St-Paul-la-Feuilée
 9;Gare de Menton
 10;Gare de Commentry
 11;Gare de Kruth
 12;Gare de Colomiers
 13;Gare de Roeschwoog
-14;Saint-Sulpice-sur-Lèze
-15;Gare de Pont-Saint-Vincent
+14;St-Sulpice-sur-Lèze
+15;Gare de Pont-St-Vincent
 16;Gare de Clermont-de-l'Oise
 17;Vienne-Gare-Routière
-18;Saint-George-d'Aurac-Bourg
+18;St-George-d'Aurac-Bourg
 19;Gare de Evreux
 20;Gare de Wingen-sur-Moder
 21;Sarrebourg-Abri-Phalsbo
@@ -26,7 +26,7 @@ id;station
 24;Gare de Bas-Monistrol
 25;Gare de Etang
 26;Riom_Es_M_la_Poste.
-27;Gare de Lyon-Saint-Paul
+27;Gare de Lyon-St-Paul
 28;Gare de Lorient
 29;Gare de Vitré
 30;Gare de Verdun
@@ -40,22 +40,22 @@ id;station
 38;Gare de Châteauroux
 39;Luneville-LP
 40;Gare de Mulhouse-Gare-Centrale
-41;Gare de Saint-Gilles-Croix-de-Vie
+41;Gare de St-Gilles-Croix-de-Vie
 42;Gare de Paris Gare du Nord
 43;Gare de Longuyon
 44;Gare de Port-Boulet
 45;Gare de Macau
 46;Gare de Sérézin
-47;Gare de Marseille-Saint-Charles
+47;Gare de Marseille-St-Charles
 48;Gare de Castelsarrasin
 49;Gare de Yvetot
 50;Gare de Gien
 51;Gare de Jeumont
 52;Gare de Vienne
-53;Lyon-Saint-Paul-Quai-Bondy
+53;Lyon-St-Paul-Quai-Bondy
 54;Gare de Ancenis
 55;Gare de Haguenau
-56;Gare de Saint-Emilion
+56;Gare de St-Emilion
 57;Châteaubriant
 58;Gare de Le Dorat
 59;Gare de Pierrelatte
@@ -63,35 +63,35 @@ id;station
 61;Gare de Toul
 62;Gare de Rosporden
 63;Gare de Hazebrouck
-64;Gare de Elbeuf-Saint-Aubin
+64;Gare de Elbeuf-St-Aubin
 65;Gare de Tarbes
-66;Saint-Jean-de-Bassel-Eglis
+66;St-Jean-de-Bassel-Eglis
 67;Le-Mont-Dore-Gare
 68;Aiton-Salle-Polyvalente
 69;Gare de Antibes
 70;Gare de Givors-Ville
 71;Gare de Château-Renault
 72;Gare de Tassin
-73;Saint-Aignan-Lep
+73;St-Aignan-Lep
 74;Gare de Nogent-sur-Seine
 75;Normandie
-76;Saint-Eloy
+76;St-Eloy
 77;Gare de Alençon
 78;Gare de Busigny
 79;Damblain Eglise
 80;Gare de Raedersheim
-81;Gare de Saint-Pierre-le-Moûtier
+81;Gare de St-Pierre-le-Moûtier
 82;Gare de Château-Thierry
 83;Gare de Epinal
-84;Gare de Saint-Amand-Montrond-Orval
-85;Gare de Saint-Malo
+84;Gare de St-Amand-Montrond-Orval
+85;Gare de St-Malo
 86;Gare de Vannes
 87;Vierzon-Médiathèque
 88;Gare de Sisteron
 89;Bruyères Chanzy Gare
 90;Gare de Trouville-Deauville
 91;Saverne-(Pl.-Dragons)
-92;Saint-Martin-d'Hères
+92;St-Martin-d'Hères
 93;Gare de Avignon-Centre
 94;Gare de Entzheim-Aéroport
 95;Gare de Vic-le-Comte
@@ -111,7 +111,7 @@ id;station
 109;Gare de Nancy-Ville
 110;Gare de Conflans-Jarny
 111;Gare de Quimper
-112;Gare de Auxerre-Saint-Gervais
+112;Gare de Auxerre-St-Gervais
 113;Gare de Clermont-Ferrand
 114;Gare de Delle
 115;Bresse-Claudel (la)
@@ -162,7 +162,7 @@ id;station
 160;Gare de Avesnes
 161;Gare de Carhaix
 162;Gare de Carmaux
-163;Saint-Eloy-les-Mines-Lycée
+163;St-Eloy-les-Mines-Lycée
 164;Le-Breuil-sur-Couze-Lyc
 165;Gare de Chambéry-Chal.-les-Eaux
 166;Hattmatt-S.-Polyvalente
@@ -180,12 +180,12 @@ id;station
 178;Gare de Laon
 179;Gare de Thiers
 180;Gare de Le Buisson
-181;Gare de Saint-Marcellin
+181;Gare de St-Marcellin
 182;Gare de Toulouse-Matabiau
 183;Gare de Lutterbach Tram-train
 184;Gare de Aillevillers
 185;Gare de Neuchâtel
-186;Gare de Angers-Saint-Laud
+186;Gare de Angers-St-Laud
 187;Gare de Tulle
 188;Mauriac-Lycée-Cortat
 189;Le Mont St Michel
@@ -201,13 +201,13 @@ id;station
 199;Gare de Limeray
 200;Bouxwiller-Schattenmann
 201;Chatillon-Mail
-202;Gare de Saint-Sulpice (Tarn)
-203;Gare de Saint-Jean-de-Maurienne-A.
+202;Gare de St-Sulpice (Tarn)
+203;Gare de St-Jean-de-Maurienne-A.
 204;Gare de Riom-Châtel-Guyon
 205;Gare de La Forest
-206;Gare de Epierre-Saint-Léger
+206;Gare de Epierre-St-Léger
 207;Gare de Culoz
-208;Gare de Saint-Pierre-d'Albigny
+208;Gare de St-Pierre-d'Albigny
 209;Gare de Romilly-sur-Seine
 210;Gare de Nouzonville
 211;Gare de Culmont-Chalindrey
@@ -242,13 +242,13 @@ id;station
 240;Gare de Château-Gaillard
 241;Gare de Brou
 242;Reignac-Bourg-Du-Fau
-243;Gare de Saint-Jean-Pied-de-Port
+243;Gare de St-Jean-Pied-de-Port
 244;Gare de Callac
 245;Gare de Montréjeau-Gourdan-Pol.
 246;Laqueuille
 247;Gare de Benfeld
 248;Gare de Villers-les-Pots
-249;Gare de Courtalain-Saint-Pellerin
+249;Gare de Courtalain-St-Pellerin
 250;Gare de Besançon-Viotte
 251;Gare de Loches
 252;Gare de Oloron-Ste-Marie
@@ -262,24 +262,24 @@ id;station
 260;Riquewihr-Poste
 261;Gare de Argenton-sur-Creuse
 262;Gare de La-Rochelle-Pt-Dauphine
-263;Gare de Saint-Aignan-Noyers
+263;Gare de St-Aignan-Noyers
 264;Gare de Longages-Noé
 265;Gare de Colmar
 266;Gare de Versailles-Chantiers
 267;Gare de Morhange
-268;Gare de Saint-Germain-des-Fossés
+268;Gare de St-Germain-des-Fossés
 269;Gare de Pessac
 270;Gare de Nantes
 271;Moyen
 272;Gare de Mantes-la-Jolie
 273;Gare de Barr
 274;Gare de Condat-le-Lardin
-275;Gare de Saint-Yrieix-la-Perche
+275;Gare de St-Yrieix-la-Perche
 276;Gare de Dives-Cabourg
 277;Courtalain-Centre
 278;Gare de Niederbronn
 279;Bort-les-Orgues
-280;Ancizes-Saint-Georges-Bour
+280;Ancizes-St-Georges-Bour
 281;Gare de Béziers
 282;Gare de Mulhouse
 283;nan
@@ -287,7 +287,7 @@ id;station
 285;Gare de Rennes
 286;Gare de Beauvais-Gare-SNCF
 287;Gare de Veynes-Dévoluy
-288;Loches-Lycee-Saint-Denis
+288;Loches-Lycee-St-Denis
 289;Gare de Montivilliers
 290;Neuwiller-R.-Bouxwiller
 291;Truyes-Pl-Du-Souvenir
@@ -317,7 +317,7 @@ id;station
 315;Gare de Carpentras
 316;Gare de Beslé
 317;Gare de Neustadt (Weinstr) Hbf
-318;Gare de La Bastide-Saint-Laurent
+318;Gare de La Bastide-St-Laurent
 319;Gare de Dijon-Ville
 320;Gare de Volvic
 321;Gare de Thionville
@@ -373,7 +373,7 @@ id;station
 371;Sèlestat-(Schwilgué)
 372;Gare de Rives
 373;Gare de Marmande
-374;Gare de Saint-Junien
+374;Gare de St-Junien
 375;Gare de Morcenx
 376;Gare de Lisieux
 377;Gare de Rang du Fl. Verton Ber.
@@ -401,7 +401,7 @@ id;station
 399;Gare de Saint-Claude
 400;Gare de Argentan
 401;Gérardmer La Mauselaine
-402;Gare de Saint-Lô
+402;Gare de St-Lô
 403;Gare de Mouchard
 404;Gare de La Rochelle-Ville
 405;Châteauroux-L-Giraudoux
@@ -409,7 +409,7 @@ id;station
 407;Gare de Vittel
 408;Gare de Monsempron-Libos
 409;Gare de Laval
-410;Gare de Saint-Brieuc
+410;Gare de St-Brieuc
 411;Gare de Les Sables-d'Olonne
 412;Bitche-Camp
 413;Ambert
@@ -424,7 +424,7 @@ id;station
 422;Gare de Messac-Guipry
 423;Corcieux Le Conti
 424;Gare de Châteaudun
-425;Gare de Saint-Nazaire
+425;Gare de St-Nazaire
 426;Gare de Paray-le-Monial
 427;Gare de Franois
 428;Gare de Brignais
@@ -439,7 +439,7 @@ id;station
 437;Gare de Bayonne
 438;Gare de Bergerac
 439;Gare de Reignac
-440;Gare de Paris-Saint-Lazare
+440;Gare de Paris-St-Lazare
 441;Rambervillers
 442;Gare de Bidos
 443;Gare de Saverne
@@ -455,7 +455,7 @@ id;station
 453;Gare de Limoux
 454;Gare de Vauvert
 455;Gare de Boulogne Ville
-456;Saint-Gervais-Mairie
+456;St-Gervais-Mairie
 457;Gare de Ste-Pazanne
 458;Gare de Crépy-en-Valois
 459;Haguenau-Moulin-Neuf.
@@ -496,21 +496,21 @@ id;station
 494;Bayel-Eglise
 495;Gare de Saales
 496;Gare de Moulins-sur-Allier
-497;Saint-Pierre-de-Chandieu-R
+497;St-Pierre-de-Chandieu-R
 498;Gare de Nevers-Le-Banlay
 499;Gare de Metzeral
 500;Gare de Cambo-les-Bains
 501;Bourges-Gare-Routière
 502;Gare de Bonneville
-503;Gare de Saint-Dié-des-Vosges
-504;Gare de Pontorson-Mt-Saint-Michel
+503;Gare de St-Dié-des-Vosges
+504;Gare de Pontorson-Mt-St-Michel
 505;Gare de Clisson
 506;Gare de Albens
 507;Gare de Bléré-la-Croix
 508;Bourg-en-Bresse Gare R
 509;Châteauroux-Lycée-Agric
 510;Gare de Tessonnières
-511;Saint-Gervais-Ch-LPA.
+511;St-Gervais-Ch-LPA.
 512;Roanne-Gare-Routière
 513;Gare de Mâcon-Loché-TGV
 514;BarentonÂ Cel
@@ -519,7 +519,7 @@ id;station
 517;Gare de Fécamp
 518;Gare de Nogent-le-Rotrou
 519;Gare de Thesee
-520;Gare de Saint-Chély-d'Apcher
+520;Gare de St-Chély-d'Apcher
 521;Gare de Etaples Le Touquet
 522;Gare de Pornic
 523;Gare de Toury
@@ -535,10 +535,10 @@ id;station
 533;Dossenheim-(Mairie)
 534;Gare de Mâcon-Ville
 535;Gare de Auch
-536;Gare de Bordeaux-Saint-Jean
-537;Gare de Saint-Gervais-L-B-Le-Fayet
+536;Gare de Bordeaux-St-Jean
+537;Gare de St-Gervais-L-B-Le-Fayet
 538;Gare de Molsheim
-539;Saint-Flour-les-Allées
+539;St-Flour-les-Allées
 540;Gare de Biel
 541;Gare de Sospel
 542;Gare de Besançon-Franche-Comté
@@ -560,13 +560,13 @@ id;station
 558;Gare de Lens
 559;Gare de Prissé-la-Charrière
 560;Montélimar-G-Routière
-561;Gare de Saint-Etienne-Châteaucreux
+561;Gare de St-Etienne-Châteaucreux
 562;Gare de Mussidan
 563;Gare de Rochefort
 564;Gare de Annecy
 565;Frohmuhl- (Lavoir)
-566;Gare de Saint-Priest
-567;Truyes-Saint-Blaise
+566;Gare de St-Priest
+567;Truyes-St-Blaise
 568;Lichtenberg-(Eglise).
 569;Laissac-Foirail
 570;Gare de Audun-le-Roman
@@ -576,7 +576,7 @@ id;station
 574;Gare de La Souterraine
 575;Gare de Cormery
 576;Gare de Lyon-Part-Dieu
-577;Gare de Saint-Mariens-Saint-Yzan
+577;Gare de St-Mariens-St-Yzan
 578;Gare de Lamotte-Beuvron
 579;Valence-Gare-Routière
 580;Gare de Le Croisic
@@ -590,7 +590,7 @@ id;station
 588;Gare de Offenburg
 589;Gare de Flers
 590;Gare de Poligny
-591;Gare de Saint-Georges-d'Aurac
+591;Gare de St-Georges-d'Aurac
 592;Gare de Dol
 593;Gare de Thann
 594;Gare de Font-Romeu-Odeillo-Via
@@ -605,7 +605,7 @@ id;station
 603;Allamps-Esat
 604;Gare de Erstein
 605;Reipertswiller-SP.
-606;Gare de Bourg-Saint-Maurice
+606;Gare de Bourg-St-Maurice
 607;Ettendorf-Pl,-de-L'ecol
 608;Sarralbe
 609;Gare de Port-Bou
@@ -628,7 +628,7 @@ id;station
 626;Gare de Maubeuge
 627;Gare de Lyon-Gorge-de-Loup
 628;Gare de Sucé-Sur-Erdre
-629;Saint-Louis-57-Incliné
+629;St-Louis-57-Incliné
 630;Gare de Charleville-Mézières
 631;Gare de Longwy
 632;Gare de Granville
@@ -645,7 +645,7 @@ id;station
 643;Gare de Rolleville
 644;Ettendorf-(Angle-Pont)
 645;Gare de Ussel
-646;Gare de Saint-Denis-près-Martel
+646;Gare de St-Denis-près-Martel
 647;Gare de Paris-Montparnasse 1-2
 648;Gare de Le Havre
 649;Gare de Janzé
@@ -667,27 +667,27 @@ id;station
 665;Gare de Pauillac
 666;Gare de Auxonne
 667;Gare de St Pol sur Ternoise
-668;Gare de Saint-Vit
+668;Gare de St-Vit
 669;Bricon(la Poste)
 670;Ribeauville-Gare-Routiè
 671;Ste-Marie-/-Mines-Maire
 672;Gare de Vichy
 673;Gare de Montreux-Vieux
 674;Gare de Muret
-675;Gare de Saint-Flour-Chaudes-Aigues
+675;Gare de St-Flour-Chaudes-Aigues
 676;Gare de Carnoules
 677;Gare de Troyes
 678;Gare de Lison
 679;Gare de Obernai
 680;Gare de Hirson
 681;Gare de Surdon
-682;Gare de Saint-Pierre-des-Corps
+682;Gare de St-Pierre-des-Corps
 683;Bruyères (Vosges)
 684;Gare de L'Arbresle
 685;Gare de Tergnier
 686;Gare de Contrexéville
 687;Mirecourt (Lycée Agric)
-688;Gare de Saint-Florentin-Vergigny
+688;Gare de St-Florentin-Vergigny
 689;Gare de Sarreguemines
 690;Gare de Chartres
 691;Gare de Wesserling
@@ -719,14 +719,14 @@ id;station
 717;Gare de Vallorbe-Cff
 718;Gare de Liverdun
 719;Gare de Saintes
-720;Gare de Saint-Raphaël-Valescure
+720;Gare de St-Raphaël-Valescure
 721;Gare de Joinville
 722;Gare de Rothau
-723;Gare de Saint-Rambert-en-Bugey
+723;Gare de St-Rambert-en-Bugey
 724;Gare de La Douzillère
 725;Gare de Les Laumes-Alésia
 726;Gare de Les Arcs-Draguignan
-727;Gare de Saint-JuSaint-SNCF
+727;Gare de St-JuSaint-SNCF
 728;Gare de Sablé-sur-Sarthe
 729;Gare de Montauban-Ville-Bourbon
 730;Gare de Bréauté-Beuzeville
@@ -778,7 +778,7 @@ id;station
 776;Gare de La Roche-sur-Yon
 777;Gare de Objat
 778;Vezin-Carrefour
-779;Gare de Saint-André-le-Gaz
+779;Gare de St-André-le-Gaz
 780;Gare de WOERTH RHEIN
 781;Bois-d'Oingt-Centre
 782;Ste-Marie/-Ms-(-Théâtre
@@ -799,7 +799,7 @@ id;station
 797;Gare de Retiers
 798;Gare de Mommenheim
 799;Neufchateau-Lp
-800;Saint-Aignan-Pl-Wilson
+800;St-Aignan-Pl-Wilson
 801;Gare de Chedde
 802;Gare de Dieppe
 803;Gare de Persan-Beaumont
@@ -813,7 +813,7 @@ id;station
 811;Gare de Seurre
 812;Gare de Paris-Montp.3-Vaug.
 813;Gare de Luzy(Nièvre)
-814;Gare de Saint-Dizier
+814;Gare de St-Dizier
 815;Gare de Fismes
 816;Gare de Nexon
 817;Gare de Tourcoing
